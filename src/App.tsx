@@ -107,10 +107,15 @@ const WinnerDisplay = styled.div`
   right: 0;
   z-index: 3;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 200px;
   margin: auto;
   color: #2f2f2f;
   font-size: 42px;
+`;
+const ExampleMessage = styled.div`
+  font-size:20px;
 `;
 const marketingParticipants = [
   { name: 'Bjorn', active: true },
@@ -133,7 +138,7 @@ const kopsParticipants = [
   { name: 'Risa', active: true },
 ];
 
-let baseParticipantList = marketingParticipants;
+let baseParticipantList = [{ name: '', active: false }];
 const scrumMessage = 'How are you feeling? Any Blockers? Post-scrums?';
 const IndexPage = () => {
   const [participants, setParticipants] = useState<People[]>(baseParticipantList);
@@ -144,12 +149,30 @@ const IndexPage = () => {
   const animationRef = useRef<Player | null>(null);
 
   useEffect(() => {
-    setParticipants(marketingParticipants);
-    const queryString = window.location.search;
-    if (queryString !== '') {
-      if (queryString.split('=')[1] === 'kops') {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const teamPreset = params?.team;
+    if (teamPreset !== undefined) {
+      if (teamPreset === 'kops') {
         setParticipants(kopsParticipants);
         baseParticipantList = kopsParticipants;
+      }
+      if (teamPreset === 'mkt') {
+        setParticipants(marketingParticipants);
+        baseParticipantList = marketingParticipants;
+      }
+    }
+    else {
+      if(params?.people) {
+        // parse them into a list
+        const people = params.people;
+        const peopleSet = people.split(",").map((person) => {
+          return { name: person, active: true };
+        });
+        if(peopleSet.length > 0){
+          setParticipants(peopleSet);
+          baseParticipantList = peopleSet;
+        }
       }
     }
   }, []);
@@ -202,7 +225,12 @@ const IndexPage = () => {
   return (
     <Wrapper>
       <PickList>
-        {participants.map((participant) => {
+        {participants.length === 1 && participants[0].name === "" && 
+          <ExampleMessage>
+            Add people as comma seperated values in the url <a href="/?people=My,Myself,I">example</a>
+          </ExampleMessage>
+        }
+        {participants.length > 1 && participants[0].name !== "" && participants.map((participant) => {
           return (<OptionItem key={participant.name}>
             <CheckBox id={`${participant.name}-input`} type="checkbox" checked={participant.active} onChange={handleChange} name="participant_list" value={participant.name} />
             <label htmlFor={`${participant.name}-input`}>{participant.name}</label>
