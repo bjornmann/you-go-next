@@ -8,11 +8,18 @@ export default defineConfig({
     react(),
     VitePluginFonts({
       custom: {
-        families: [{
-          name: 'Wizard',
-          local: 'Wizard',
-          src: './src/assets/wizard.woff',
-        }],
+        families: [
+          {
+            name: 'Wizard',
+            local: 'Wizard',
+            src: './src/assets/wizard.woff',
+          },
+          {
+            name: 'NITEMARE',
+            local:'Nitemare',
+            src: './src/assets/NITEMARE.woff',
+          }
+        ],
         display: 'auto',
         preload: true,
         prefetch: false,
