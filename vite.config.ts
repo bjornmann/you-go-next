@@ -10,11 +10,6 @@ export default defineConfig({
       custom: {
         families: [
           {
-            name: 'Wizard',
-            local: 'Wizard',
-            src: './src/assets/wizard.woff',
-          },
-          {
             name: 'NITEMARE',
             local:'Nitemare',
             src: './src/assets/NITEMARE.woff',
