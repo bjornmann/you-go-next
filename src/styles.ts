@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
   }
   body {
+    font-family: Helvetica, sans-serif;
     padding: 0;
     margin: 0;
     background-color: #fbf5e3;
