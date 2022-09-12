@@ -16,12 +16,12 @@ const CardInner = styled.div`
 `;
 const Card = styled.div<ITarotCardTransient>`
   background-color: transparent;
-  width: 30px;
+  width: 50px;
   border-radius: 5px;
   perspective: 1000px;
   aspect-ratio: 1.25/2;
   overflow: hidden;
-  margin:0 auto 5px auto;
+  margin:0 auto 10px auto;
   cursor: pointer;
   transition: all .5s ease-in-out;
   &:hover{
@@ -37,23 +37,23 @@ const frontAndBackShared = css`
   backface-visibility: hidden;
   font-size: 35px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
 `
 const CardFront = styled.div`
   ${frontAndBackShared}
   justify-content: center;
-  background-color: #fbf5e3;
+  background-color: #3102c1;
 `;
 const CardBack = styled.div`
   ${frontAndBackShared}
-  background-color: #153585;
+  background-color: #9d9d9d;
   color: #cecece;
   transform: rotateY(180deg);
 `;
 const TarotCard = ({flipped}: ITarotCard) => {
   return(
-    <Card $flipped={flipped}>
+    <Card aria-hidden={true} $flipped={flipped}>
       <CardInner>
         <CardFront>🌞</CardFront>
         <CardBack>☾</CardBack>
