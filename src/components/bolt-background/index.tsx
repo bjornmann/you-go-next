@@ -1,6 +1,6 @@
 import styled from "styled-components";
 const WinnerBackground = styled.div`
-  background-image:url("./src/assets/victory.png"); 
+  background-image:url("victory.png"); 
   background-size: 70px;
   position: absolute;
   z-index: 0;
