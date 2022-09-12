@@ -10,9 +10,9 @@ export default defineConfig({
       custom: {
         families: [
           {
-            name: 'NITEMARE',
-            local:'Nitemare',
-            src: './src/assets/NITEMARE.woff',
+            name: 'Pentagrams',
+            local:'Pentagrams',
+            src: './src/assets/Pentagrams.woff',
           }
         ],
         display: 'auto',

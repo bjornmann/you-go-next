@@ -17,21 +17,27 @@ const nameAnimation = keyframes`
   20% {
     transform: translate(4px, -4px) scale(.9);
     opacity: 0.6;
+    filter: blur(2px);
   }
   40% {
     transform: translate(4px, 4px);
     opacity: 0.7;
+    filter: blur(1px);
+
   }
   60% {
     transform: translate(-4px, 4px) scale(1.1);
     opacity: 0.8;
+    filter: blur(1px);
   }
   80% {
     transform: translate(-4px, -4px) scale(1);
     opacity: 1;
+    filter: blur(0px);
+
   }
   100% {
-    transform: translate(0) ;
+    transform: translate(0);
   }
 `;
 
@@ -49,7 +55,6 @@ const PickList = styled.div<{$listCount:number}>`
   padding: 20px;
   text-align: center;
   display: grid;
-  //set grid to count if less than 6
   grid-template-columns: repeat(${({$listCount})=> $listCount < 6 ? $listCount : 6}, 1fr);
   border-radius: 10px;
   gap: 25px;
@@ -74,6 +79,13 @@ const Wrapper = styled.div`
 `;
 
 const OptionItem = styled.div`
+  transition: all .25s ease;
+  font-size: 17px;
+  font-weight: bold;
+  &:focus-visible,&:focus,&:focus-within {
+    filter: blur(1px);
+    transform: scale(0.8);
+  }
 `
 const Message = styled.div`
     padding: 14px 20px;
@@ -102,14 +114,14 @@ const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean}>`
   width: 200px;
   margin: auto;
   color: #2f2f2f;
-  font-size: clamp(20px, 8vw, 75px);
-  font-family: Nitemare, serif;
+  font-size: clamp(15px,6vw,30px);
+  font-family: Pentagrams, serif;
   transition: all .2s;
   ${({$winnerIn}) => `
     opacity: ${$winnerIn ? 1 : 0};
   `}
   ${({$isPicking}) => !$isPicking && css`
-      animation: 10s ${nameAnimation} ease-in-out infinite;
+      animation: 30s ${nameAnimation} ease-in-out infinite;
   `}
 `;
 const ExampleMessage = styled.div`
@@ -147,7 +159,6 @@ const IndexPage = () => {
   const [showWinner, setShowWinner] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const crystalBallAnimationRef = useRef<Player | null>(null);
-
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
@@ -196,13 +207,18 @@ const IndexPage = () => {
     if(params?.message) {
       message = params.message;
     }
+    document.body.onkeyup = function(e) {
+      if (e.code == "Enter") {
+        pickWinner();
+      }
+    }
   }, []);
   useEffect(() => {
     setActiveParticipants(participants.filter((participant) => { return Boolean(participant.active) }));
   }, [participants])
 
   const pickWinner = () => {
-    if (isPicking || isDone) {
+    if (isPicking || isDone || getActiveParticipants(participants).length === 0) {
       return false;
     }
     if (crystalBallAnimationRef.current) {
@@ -244,9 +260,7 @@ const IndexPage = () => {
         return participant;
       });
       setParticipants(updatedParticipants);
-      if(getActiveParticipants(updatedParticipants).length === 0){
-        setIsDone(true);
-      } else {
+      if(getActiveParticipants(updatedParticipants).length > 0){
         setIsDone(false);
       }
     }
@@ -261,6 +275,10 @@ const IndexPage = () => {
         width={size.width} 
         height={size.height}
         colors={['#3102c1','#63C132','#ED254E']}
+        drawShape={ctx => {
+          ctx.font = '48px sans-serif';
+          ctx.fillText(winner.name, 10, 50);
+        }}
       />}
     <Wrapper>
     <PickList $listCount={participants.length}>

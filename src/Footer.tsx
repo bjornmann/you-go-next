@@ -22,7 +22,7 @@ const SiteLink = styled.a`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  margin-right: 4px;
+  margin-right: 2px;
 `
 const FooterContent = styled.div`
     padding: 30px;
@@ -34,7 +34,7 @@ const Footer = ({backgroundActive}: IFooter) => {
   return (
     <StyledFooter>
       <FooterContent>
-        <SiteLink href="https://bjornmann.com">Bjørn Mann</SiteLink> made this for you
+        <SiteLink href="https://bjornmann.com">Bjørn Mann</SiteLink> made this for <i>you</i>
       </FooterContent>
       {backgroundActive && <FooterBackground />}
     </StyledFooter>

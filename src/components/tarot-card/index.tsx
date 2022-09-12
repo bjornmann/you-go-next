@@ -53,7 +53,7 @@ const CardBack = styled.div`
 `;
 const TarotCard = ({flipped}: ITarotCard) => {
   return(
-    <Card $flipped={flipped}>
+    <Card aria-hidden={true} $flipped={flipped}>
       <CardInner>
         <CardFront>🌞</CardFront>
         <CardBack>☾</CardBack>
