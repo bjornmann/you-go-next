@@ -167,12 +167,12 @@ const IndexPage = () => {
       if (teamPreset === 'kops') {
         setParticipants(kopsParticipants);
         baseParticipantList = kopsParticipants;
-        message = 'How are you feeling? Blockers? Sprint goal? Post scrums?';
+        message = 'How are you feeling?|Blockers?|Sprint goal?|Post scrums?';
       }
       if (teamPreset === 'mkt') {
         setParticipants(marketingParticipants);
         baseParticipantList = marketingParticipants;
-        message = 'How are you feeling?|Blockers?|Anything to share?';
+        message = 'How are you feeling?|Blockers?|Sprint goal?|Anything to share?';
       }
     }
     else {
