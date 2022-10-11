@@ -139,13 +139,13 @@ const marketingParticipants = [
 ];
 const kopsParticipants = [
   { name: 'Alice', active: true },
+  { name: 'Andrew', active: true },
   { name: 'Bjorn', active: true },
   { name: 'Jason', active: true },
   { name: 'Jordan', active: true },
   { name: 'Kenny', active: true },
   { name: 'Mike', active: true },
   { name: 'Nate', active: true },
-  { name: 'Rem', active: true },
   { name: 'Risa', active: true },
 ];
 
