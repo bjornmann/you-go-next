@@ -270,7 +270,7 @@ const IndexPage = () => {
     <>
     {isDone && 
       <Confetti 
-        numberOfPieces={400} 
+        numberOfPieces={100} 
         recycle={false} 
         width={size.width} 
         height={size.height}
