@@ -1,6 +1,7 @@
 {
   "name": "you-go-next",
   "private": true,
+  "license": "gpl-3.0",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
