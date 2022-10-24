@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const WinnerBackground = styled.div`
+const BoltBackground = styled.div`
   background-image:url("victory.png"); 
   background-size: 70px;
   position: absolute;
@@ -12,7 +12,7 @@ const WinnerBackground = styled.div`
 `;
 const PurpleBackground = () => {
   return(
-    <WinnerBackground />
+    <BoltBackground />
   );
 }
 export default PurpleBackground
