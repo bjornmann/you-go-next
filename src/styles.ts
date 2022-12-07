@@ -59,7 +59,19 @@ const nameAnimation = keyframes`
     transform: translate(0);
   }
 `;
-
+export const Playsound = styled.button<{status:boolean}>`
+  background-color: ${({status}) => status ? "#74cee1" : "#f26f73"};
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  fill: ${({status}) => status ? "#000000" : "#ffffff"};
+  line-height: 100%;
+  top: 5px;
+  right: 0;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+`;
 export const CheckBox = styled.input`
   position: absolute; 
   overflow: hidden; 
