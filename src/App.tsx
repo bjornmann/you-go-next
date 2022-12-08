@@ -151,10 +151,7 @@ const IndexPage = () => {
     const winnerIndex = activeParticipants.findIndex((el) => {
       return el?.name === activeParticipants[winningNumber]?.name;
     });
-    if(playSound){
-        const utterance = new SpeechSynthesisUtterance(`${activeParticipants[winningNumber]?.name}, you go next!`);
-        speechSynthesis.speak(utterance);
-    }
+    const readOutName = activeParticipants[winningNumber]?.name;
     //put it in state
     setWinner({ index: winnerIndex, ...activeParticipants[winnerIndex] });
     //get the winner out of the list of options to pick from
@@ -168,9 +165,34 @@ const IndexPage = () => {
     setParticipants(updatedParticipants);
     //display the winner
     setShowWinner(true);
+    let speechOutput;
+    const winningSpeechOptions = [
+      'winner winner chicken dinner.',
+      'you were picked last. yay.',
+      'insert trumpet sound here.',
+      'woo hoo. you win?',
+      'cue the confetti.',
+      'knock knock, who is there? You. you win.',
+      'time to make the donuts.',
+      'you just earned a black belt in going last. Chop!',
+      'you are the hero of this story!',
+      'there is no try, there is only you',
+      'time to finish strong. POWER!',
+      'it is time to party, party for you.',
+      'I had a dream about this, you were there.',
+    ]
+    speechOutput = 'you go next!';
     if(activeParticipants.length === 0){
       //none left, it's over
       setIsDone(true);
+      if(playSound) {
+        speechOutput = winningSpeechOptions[Math.floor(Math.random() * winningSpeechOptions.length)];
+      }
+    }
+    if(playSound){
+      const utterance = new SpeechSynthesisUtterance(`${readOutName}, ${speechOutput}`);
+      utterance.pitch = 0.7; 
+      speechSynthesis.speak(utterance);
     }
   }
   const handleChange = (e: ChangeEvent): void => {
