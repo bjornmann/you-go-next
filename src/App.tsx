@@ -23,6 +23,7 @@ const kopsParticipants = [
   { name: 'Andrew', active: true },
   { name: 'Bjorn', active: true },
   { name: 'Jason', active: true },
+  { name: 'Jeff', active: true },
   { name: 'Kenny', active: true },
   { name: 'Mike', active: true },
   { name: 'Nate', active: true },
