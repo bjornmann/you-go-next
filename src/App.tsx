@@ -1,5 +1,7 @@
 import { useState, useEffect, ChangeEvent, useRef } from "react"
 import { Player } from '@lottiefiles/react-lottie-player';
+import { useLocalStorageBoolean } from "react-use-window-localstorage";
+
 import * as s from './styles';
 import wizardHands from "./assets/wizard-hands.json";
 import useWindowSize from './hooks/useWindowSize';
@@ -14,15 +16,12 @@ const marketingParticipants = [
   { name: 'Bjorn', active: true },
   { name: 'Danyon', active: true },
   { name: 'Jon', active: true },
-  { name: 'Michael', active: true },
   { name: 'Mickey', active: true },
   { name: 'Patrick', active: true },
 ];
 const kopsParticipants = [
   { name: 'Alice', active: true },
   { name: 'Andrew', active: true },
-  { name: 'Bjorn', active: true },
-  { name: 'Jason', active: true },
   { name: 'Jeff', active: true },
   { name: 'Kenny', active: true },
   { name: 'Mike', active: true },
@@ -34,7 +33,6 @@ const kopsParticipants = [
 let baseParticipantList = [{ name: '', active: false }];
 let message = '';
 const IndexPage = () => {
-  const [playSound, setPlaySound] = useState(false);
   //all options/people
   const [participants, setParticipants] = useState<IPeople[]>(baseParticipantList);
   //options/people that can be picked
@@ -52,6 +50,7 @@ const IndexPage = () => {
   const colorSet = [] as string[];
   //need to acces the animation to change states
   const crystalBallAnimationRef = useRef<Player | null>(null);
+  const [playSound, setPlaySound] = useLocalStorageBoolean("playSound", false);
   useEffect(() => {
     //get query params to pull options and message
     const urlSearchParams = new URLSearchParams(window.location.search);
