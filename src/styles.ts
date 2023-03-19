@@ -59,18 +59,34 @@ const nameAnimation = keyframes`
     transform: translate(0);
   }
 `;
-export const Playsound = styled.button<{status:boolean|null}>`
-  background-color: ${({status}) => status ? "#74cee1" : "#f26f73"};
-  width: 30px;
-  height: 30px;
+export const PlaySoundWrapper = styled.div<{status:boolean|null}>`
+  width: 62px;
+  height: 32px;
+  background: #ddd;
+  border-radius: 20px;
   position: absolute;
-  fill: ${({status}) => status ? "#000000" : "#ffffff"};
-  line-height: 100%;
   top: 5px;
   right: 0;
+  box-shadow: inset 0px 0px 3px #9d9d9d;
   cursor: pointer;
-  border: 1px solid #ddd;
+  background-color: ${({status}) => status ? "#74cee1" : "#f26f73"};
+`;
+export const Playsound = styled.button<{status:boolean|null}>`
+  background-color: #40393a;
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+  line-height: 100%;
+  cursor: pointer;
+  border: 1px solid #30292a;
   border-radius: 100%;
+  transition: all .25s linear;
+  position: relative;
+  top: 1px;
+  transform: translateX(${({status}) => status ? "31px" : "1px"});
+  .toggle {
+    fill: ${({status}) => status ? "#ffffff" : "transparent"}
+  }
 `;
 export const CheckBox = styled.input`
   position: absolute; 
