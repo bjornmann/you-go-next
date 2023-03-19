@@ -59,7 +59,7 @@ const nameAnimation = keyframes`
     transform: translate(0);
   }
 `;
-export const Playsound = styled.button<{status:boolean}>`
+export const Playsound = styled.button<{status:boolean|null}>`
   background-color: ${({status}) => status ? "#74cee1" : "#f26f73"};
   width: 30px;
   height: 30px;
