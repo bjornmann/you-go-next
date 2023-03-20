@@ -59,18 +59,49 @@ const nameAnimation = keyframes`
     transform: translate(0);
   }
 `;
+export const OptionsBar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const PlaySoundWrapper = styled.div<{status:boolean|null}>`
+  width: 62px;
+  height: 32px;
+  background: #ddd;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: inset 0px 0px 3px #9d9d9d;
+  cursor: pointer;
+  background-color: ${({status}) => status ? "#65a011" : "#f26f73"};
+  &:before{
+    ${({status}) => status ? "content:'ON'" : "content:'OFF'"};
+    display: block;
+    position: absolute;
+    ${({status}) => status ?  "left:0" : "right:0"};
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    color: ${({status}) => status ? "#c2f0ad" : "#8a2426"};
+    margin: ${({status}) => status ? "0 0px 0 5px" : "0 5px 0 0px"};
+;
+  }
+`;
 export const Playsound = styled.button<{status:boolean|null}>`
-  background-color: ${({status}) => status ? "#74cee1" : "#f26f73"};
+  background-color: #40393a;
   width: 30px;
   height: 30px;
-  position: absolute;
-  fill: ${({status}) => status ? "#000000" : "#ffffff"};
+  fill: #ffffff;
   line-height: 100%;
-  top: 5px;
-  right: 0;
   cursor: pointer;
-  border: 1px solid #ddd;
+  border: 1px solid #30292a;
   border-radius: 100%;
+  transition: all .25s linear;
+  position: relative;
+  top: 1px;
+  transform: translateX(${({status}) => status ? "31px" : "1px"});
+  .toggle {
+    fill: ${({status}) => status ? "#ffffff" : "transparent"}
+  }
 `;
 export const CheckBox = styled.input`
   position: absolute; 
