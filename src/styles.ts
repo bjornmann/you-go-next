@@ -66,10 +66,22 @@ export const PlaySoundWrapper = styled.div<{status:boolean|null}>`
   border-radius: 20px;
   position: absolute;
   top: 5px;
-  right: 0;
+  right: 5px;
   box-shadow: inset 0px 0px 3px #9d9d9d;
   cursor: pointer;
-  background-color: ${({status}) => status ? "#74cee1" : "#f26f73"};
+  background-color: ${({status}) => status ? "#65a011" : "#f26f73"};
+  &:before{
+    ${({status}) => status ? "content:'ON'" : "content:'OFF'"};
+    display: block;
+    position: absolute;
+    ${({status}) => status ?  "left:0" : "right:0"};
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    color: ${({status}) => status ? "#c2f0ad" : "#8a2426"};
+    margin: ${({status}) => status ? "0 0px 0 5px" : "0 5px 0 0px"};
+;
+  }
 `;
 export const Playsound = styled.button<{status:boolean|null}>`
   background-color: #40393a;
