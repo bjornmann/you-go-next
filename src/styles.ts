@@ -59,14 +59,17 @@ const nameAnimation = keyframes`
     transform: translate(0);
   }
 `;
+export const OptionsBar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 export const PlaySoundWrapper = styled.div<{status:boolean|null}>`
   width: 62px;
   height: 32px;
   background: #ddd;
   border-radius: 20px;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  position: relative;
   box-shadow: inset 0px 0px 3px #9d9d9d;
   cursor: pointer;
   background-color: ${({status}) => status ? "#65a011" : "#f26f73"};

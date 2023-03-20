@@ -8,14 +8,12 @@ const StyledFooter = styled.footer`
   font-size: 15px;
   text-align: center;
   position: relative;
-  height: 230px;
-  margin-top: 140px;
+  height: 150px;
+  margin-top: 20px;
   display: flex;
   overflow: hidden;
-  position: relative;
-  justify-content: center;
+  align-items: flex-end;
   color: #fff;
-  align-items: center;
   background: radial-gradient(#3102c1, #542bd3);
 `;
 const SiteLink = styled.a`
@@ -28,9 +26,9 @@ const FooterContent = styled.div`
     padding: 30px;
     z-index: 1;
     background: rgb(63 18 200);
-    border-radius: 90px;
+    width: 100%;
 `;
-const Footer = ({backgroundActive}: IFooter) => {
+const Footer = ({ backgroundActive }: IFooter) => {
   return (
     <StyledFooter>
       <FooterContent>
