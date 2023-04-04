@@ -17,6 +17,7 @@ const marketingParticipants = [
   { name: 'Danyon', active: true },
   { name: 'Jon', active: true },
   { name: 'Mickey', active: true },
+  { name: 'Noah', active: true },
   { name: 'Patrick', active: true },
 ];
 const kopsParticipants = [
