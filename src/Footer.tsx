@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import styled from "styled-components"
 import FooterBackground from "./components/bolt-background";
 interface IFooter {
@@ -10,8 +9,7 @@ const StyledFooter = styled.footer`
   position: relative;
   height: 150px;
   margin-top: 20px;
-  display: flex;
-  overflow: hidden;
+  align-self: end;
   align-items: flex-end;
   color: #fff;
   background: radial-gradient(#3102c1, #542bd3);
@@ -31,10 +29,10 @@ const FooterContent = styled.div`
 const Footer = ({ backgroundActive }: IFooter) => {
   return (
     <StyledFooter>
+      {backgroundActive && <FooterBackground />}
       <FooterContent>
         <SiteLink href="https://bjornmann.com">Bjørn Mann</SiteLink> made this for <i>you</i>
       </FooterContent>
-      {backgroundActive && <FooterBackground />}
     </StyledFooter>
   )
 }

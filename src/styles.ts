@@ -83,7 +83,6 @@ export const PlaySoundWrapper = styled.div<{status:boolean|null}>`
     line-height: 30px;
     color: ${({status}) => status ? "#c2f0ad" : "#8a2426"};
     margin: ${({status}) => status ? "0 0px 0 5px" : "0 5px 0 0px"};
-;
   }
 `;
 export const Playsound = styled.button<{status:boolean|null}>`
@@ -131,13 +130,8 @@ export const Wrapper = styled.div`
   z-index: 20;
   position: relative;
   max-width: 1000px;
+  min-height: 100vh;
   margin: 0 auto;
-  min-height: 50vh;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
 `;
 
 export const OptionItem = styled.div`
