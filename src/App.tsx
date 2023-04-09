@@ -16,7 +16,7 @@ const marketingParticipants = [
   { name: 'Bjorn', active: true },
   { name: 'Danyon', active: true },
   { name: 'Jon', active: true },
-  { name: 'Mickey', active: true },
+  // { name: 'Mickey', active: true },
   { name: 'Noah', active: true },
   { name: 'Patrick', active: true },
 ];
@@ -26,7 +26,7 @@ const kopsParticipants = [
   { name: 'Jeff', active: true },
   { name: 'Kenny', active: true },
   { name: 'Mike', active: true },
-  { name: 'Nate', active: true },
+  // { name: 'Nate', active: true },
   { name: 'Risa', active: true },
   { name: 'Trey', active: true },
 ];
@@ -38,6 +38,7 @@ const IndexPage = () => {
   const [participants, setParticipants] = useState<IPeople[]>(baseParticipantList);
   //options/people that can be picked
   const [activeParticipants, setActiveParticipants] = useState<IPeople[]>(baseParticipantList);
+  const [emptyList, setEmptyList] = useState(false);
   //winner starts off empty
   const initialWinnerState = { name: 'none', active: false };
   const [winner, setWinner] = useState<IPeople>(initialWinnerState);
@@ -125,6 +126,7 @@ const IndexPage = () => {
   }, [baseParticipantList])
   useEffect(() => {
     setActiveParticipants(participants.filter((participant) => { return Boolean(participant.active) }));
+    setEmptyList(participants.length === 1 && participants[0].name === "");
   }, [participants])
 
   const pickWinner = () => {
@@ -232,8 +234,8 @@ const IndexPage = () => {
           }}
         />}
       <s.Wrapper>
-        <s.PickList $listCount={participants.length}>
-          {participants.length === 1 && participants[0].name === "" &&
+        <s.PickList $listCount={participants.length} $emptyList={emptyList}>
+          {emptyList &&
             <s.ExampleMessage>
               Add names as comma seperated values in the url. Here's an <a href="/?people=Click,Cards,To Flip Them">example</a>
             </s.ExampleMessage>

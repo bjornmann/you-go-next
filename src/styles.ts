@@ -112,18 +112,30 @@ export const CheckBox = styled.input`
   padding: 0; 
   border: 0; 
 `;
-export const PickList = styled.div<{$listCount:number}>`
+export const PickList = styled.div<{$listCount:number; $emptyList: boolean;}>`
   padding: 20px;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(${({$listCount})=> $listCount < 6 ? $listCount : 6}, 1fr);
+  ${({$listCount, $emptyList}) => $emptyList ? 
+    (`
+    grid-template-columns: repeat(1, 1fr);
+  `)
+  :
+  (`
+    grid-template-columns: repeat(${$listCount < 6 ? $listCount : 6}, 1fr);
+  `)}
   border-radius: 10px;
   gap: 25px;
   margin-top: 20px;
   justify-content: space-around;
   flex-wrap: wrap;
   @media screen and (max-width: 600px) {
+    ${({$emptyList}) => $emptyList ? (`
+    grid-template-columns: repeat(1, 1fr);
+  `) :
+  (`
     grid-template-columns: repeat(3, 1fr);
+  `)}
   }
 `;
 export const Wrapper = styled.div`
