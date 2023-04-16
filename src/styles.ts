@@ -126,7 +126,6 @@ export const PickList = styled.div<{$listCount:number; $emptyList: boolean;}>`
   `)}
   border-radius: 10px;
   gap: 25px;
-  margin-top: 20px;
   justify-content: space-around;
   flex-wrap: wrap;
   @media screen and (max-width: 600px) {

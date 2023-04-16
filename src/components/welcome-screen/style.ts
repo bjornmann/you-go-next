@@ -10,7 +10,9 @@ const inputStyles = css`
     outline: 2px dashed #faac1e;
   }
 `
-
+export const Heading = styled.h1`
+  text-align: center;
+`;
 export const WelcomeInputWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,6 +48,28 @@ export const StyledButton = styled.button<{$variant: 'up' | 'down'}>`
 `
 export const StyledTextArea = styled.textarea`
   ${inputStyles}
+`;
+
+export const OutputLink = styled.div`
+    max-width: 85%;
+    line-height: 150%;
+    box-shadow: 10px -10px 0px #542bd3, -10px 10px 0px #faac1e;
+    margin: 40px auto 0;
+    border-radius: 4px;
+    word-break: break-all;
+    padding: 20px;
+    border: 4px solid #542bd3;
+    background-image: linear-gradient( 55deg, hsl(240deg 52% 76%) 0%, hsl(293deg 42% 72%) 20%, hsl(334deg 75% 76%) 29%, hsl(358deg 100% 80%) 36%, hsl(19deg 95% 74%) 43%, hsl(37deg 72% 65%) 50%, hsl(31deg 76% 64%) 57%, hsl(24deg 78% 64%) 64%, hsl(17deg 78% 63%) 71%, hsl(10deg 77% 63%) 80%, hsl(0deg 73% 64%) 100% );
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      text-shadow: 1px 1px 3px #542bd3;
+      display: inline-block;
+    }
+    &:hover a{
+      transform: scale(1.05);
+    }
 `;
 
 export const Headline = styled.h2`
