@@ -10,9 +10,9 @@ export default defineConfig({
       custom: {
         families: [
           {
-            name: 'Pentagrams',
-            local:'Pentagrams',
-            src: './src/assets/Pentagrams.woff',
+            name: 'Unicorns',
+            local:'Unicorns',
+            src: './src/assets/unicorn.woff',
           }
         ],
         display: 'auto',

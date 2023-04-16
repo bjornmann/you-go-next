@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
   }
   body {
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: Unicorn, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0;
     margin: 0;
     background-color: #fbf5e3;
@@ -182,7 +182,7 @@ export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean
   margin: auto;
   color: #2f2f2f;
   font-size: clamp(15px,6vw,30px);
-  font-family: Pentagrams, serif;
+  font-family: Unicorn, serif;
   transition: all .2s;
   ${({$winnerIn}) => `
     opacity: ${$winnerIn ? 1 : 0};

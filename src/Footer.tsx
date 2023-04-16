@@ -1,36 +1,37 @@
 import styled from "styled-components"
-import FooterBackground from "./components/bolt-background";
-interface IFooter {
-  backgroundActive: boolean
-}
+import Logo from "./components/logo";
+
 const StyledFooter = styled.footer`
   font-size: 15px;
   text-align: center;
   position: relative;
-  height: 150px;
   margin-top: 20px;
   align-self: end;
   align-items: flex-end;
-  color: #fff;
-  background: radial-gradient(#3102c1, #542bd3);
+  color: #8a6c93;
+  background: rgb(204 165 218);
 `;
 const SiteLink = styled.a`
   text-decoration: none;
-  color: #fff;
+  color: #8a6c93;
   font-weight: bold;
   margin-right: 2px;
 `
 const FooterContent = styled.div`
-    padding: 30px;
+    padding: 30px 0;
     z-index: 1;
-    background: rgb(63 18 200);
+    background: rgb(204 165 218);
     width: 100%;
 `;
-const Footer = ({ backgroundActive }: IFooter) => {
+const StyledLogo = styled(Logo)`
+  display: block;
+  margin: 5px auto;
+`;
+const Footer = () => {
   return (
     <StyledFooter>
-      {backgroundActive && <FooterBackground />}
       <FooterContent>
+        <StyledLogo size={10} />
         <SiteLink href="https://bjornmann.com">Bjørn Mann</SiteLink> made this for <i>you</i>
       </FooterContent>
     </StyledFooter>

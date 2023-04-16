@@ -28,9 +28,11 @@ const WelcomeScreen = () => {
   }, [options, messageContent])
   return (
     <>
-      <s.Heading>You Go Next</s.Heading>
+      <s.StyledLogo size={10} aria-label="You Go Next logo" />
+      <s.Paragraph>YouGoNext.com is the best way to choose order for things like meetings, games, or any time you need to sort a group.</s.Paragraph>
+      <s.Paragraph> Just add the people who'll be involved and (optionally) a message to show on screen.</s.Paragraph>
       <s.WelcomeInputWrap>
-        <s.Headline>Options</s.Headline>
+        <s.Headline>People</s.Headline>
         {options.map((_, i) => {
           return (<s.StyledInput
             type="text"
@@ -40,8 +42,8 @@ const WelcomeScreen = () => {
           />)
         })}
         <s.InputControls>
-          {options.length > 1 && <s.StyledButton $variant="down" onClick={() => handleInputChange("down")}>-</s.StyledButton>}
-          <s.StyledButton $variant="up" onClick={() => handleInputChange("up")}>+</s.StyledButton>
+          {options.length > 1 && <s.StyledButton $variant="down" onClick={() => handleInputChange("down")}>- Remove Person</s.StyledButton>}
+          <s.StyledButton $variant="up" onClick={() => handleInputChange("up")}>+ Add Person</s.StyledButton>
         </s.InputControls>
         <s.Headline>Message</s.Headline>
         <s.StyledTextArea onKeyUp={(e) => { setMessageContent(e.currentTarget.value) }} />

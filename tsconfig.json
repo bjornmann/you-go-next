@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "lint-staged-config.js"],
+  "include": ["src/**/*", "lint-staged-config.js", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -12,8 +12,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />
     <SiteWrapper>
-        <App />
-        <Footer backgroundActive={true} />
+      <App />
+      <Footer />
     </SiteWrapper>
   </React.StrictMode>
 )
