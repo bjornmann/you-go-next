@@ -164,6 +164,9 @@ const IndexPage = () => {
         speechOutput = winningSpeechOptions[Math.floor(Math.random() * winningSpeechOptions.length)];
       }
     }
+    if (activeParticipants.length === participants.length - 1) {
+      speechOutput = 'you go first!';
+    }
     if (playSound) {
       const utterance = new SpeechSynthesisUtterance(`${readOutName}, ${speechOutput}`);
       utterance.pitch = 0.7;
