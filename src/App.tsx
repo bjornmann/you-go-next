@@ -228,7 +228,7 @@ const IndexPage = () => {
               })}
             </s.PickList>
             <s.AnimationWrapper onClick={() => pickWinner()}>
-              <s.WinnerDisplay $winnerIn={showWinner} $isPicking={isPicking}>
+              <s.WinnerDisplay $winnerIn={showWinner} $isPicking={isPicking} $winnerName={winner?.name}>
                 {winner?.name && winner.name !== 'none' ? winner?.name : 'Tap to start'}
               </s.WinnerDisplay>
               <Player

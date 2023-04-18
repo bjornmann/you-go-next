@@ -169,7 +169,7 @@ export const AnimationWrapper = styled.div`
   position: relative;
   cursor: pointer;
 `;
-export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean}>`
+export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean; $winnerName: string;}>`
   position: absolute;
   top: calc(50% - 2px);
   left: 10px;
@@ -184,10 +184,12 @@ export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean
   font-size: clamp(5px,4vw,30px);
   font-family: Unicorn, serif;
   transition: all .2s;
-  ${({$winnerIn}) => `
-    opacity: ${$winnerIn ? 1 : 0};
-  `}
-  ${({$isPicking}) => !$isPicking && css`
+  ${({$winnerIn, $winnerName, $isPicking}) => ($winnerName === 'none' && !$isPicking) ?
+  (`opacity: 1;`) 
+  :
+  (`opacity: ${$winnerIn ? 1 : 0};`)
+  }
+  ${({$isPicking, $winnerName}) => (!$isPicking && $winnerName !== 'none') && css`
       animation: 30s ${nameAnimation} ease-in-out infinite;
   `}
 `;
