@@ -226,7 +226,7 @@ const IndexPage = () => {
             </s.PickList>
             <s.AnimationWrapper onClick={() => pickWinner()}>
               <s.WinnerDisplay $winnerIn={showWinner} $isPicking={isPicking}>
-                {winner?.name && winner.name !== 'none' ? winner?.name : 'Start...'}
+                {winner?.name && winner.name !== 'none' ? winner?.name : 'Tap to start'}
               </s.WinnerDisplay>
               <Player
                 ref={crystalBallAnimationRef}

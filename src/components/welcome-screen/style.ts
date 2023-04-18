@@ -60,6 +60,7 @@ export const Paragraph = styled.p`
   min-width: 300px;
   display: block;
   margin: 20px auto 10px;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 18px;
   line-height: 160%;
 `;

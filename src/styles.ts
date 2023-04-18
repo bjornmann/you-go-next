@@ -178,10 +178,10 @@ export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 200px;
+  width: 160px;
   margin: auto;
   color: #2f2f2f;
-  font-size: clamp(15px,6vw,30px);
+  font-size: clamp(5px,4vw,30px);
   font-family: Unicorn, serif;
   transition: all .2s;
   ${({$winnerIn}) => `
