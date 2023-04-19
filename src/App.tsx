@@ -8,6 +8,8 @@ import useWindowSize from './hooks/useWindowSize';
 import Confetti from 'react-confetti';
 import TarotCard from './components/tarot-card/index';
 import WelcomeScreen from './components/welcome-screen';
+import AlertBanner from "./components/alert-banner";
+import Loading from "./components/loading";
 interface IPeople {
   name: string,
   active: boolean,
@@ -37,10 +39,24 @@ const IndexPage = () => {
   //need to access the animation to change states
   const crystalBallAnimationRef = useRef<Player | null>(null);
   const [playSound, setPlaySound] = useLocalStorageBoolean("playSound", false);
+  const [teamNotice, setTeamNotice] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoading = () => {
+    console.log(isLoading);
+    // setIsLoading(false);
+  }
+  useEffect(() => {
+    window.addEventListener("load", handleLoading);
+    return () => window.removeEventListener("load", handleLoading);
+  }, [])
   useEffect(() => {
     //get query params to pull options and message
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
+    if (params?.team) {
+      setTeamNotice(true);
+    }
     if (params?.people || params?.options) {
       // parse them into a list
       const people = params?.people || params?.options;
@@ -193,7 +209,12 @@ const IndexPage = () => {
   const size = useWindowSize();
   return (
     <>
-      {isDone &&
+      {
+        teamNotice &&
+        <AlertBanner headline="Looks like a team link." message="Please build a new link and save it for future use below" />
+      }
+      {
+        isDone &&
         <Confetti
           numberOfPieces={100}
           recycle={false}
@@ -204,12 +225,14 @@ const IndexPage = () => {
             ctx.font = '48px sans-serif';
             ctx.fillText(winner.name, 10, 50);
           }}
-        />}
+        />
+      }
       <s.Wrapper>
-        {emptyList &&
+        {isLoading && <Loading />}
+        {(emptyList && !isLoading) &&
           <WelcomeScreen />
         }
-        {!emptyList &&
+        {(!emptyList && !isLoading) &&
           <>
             <s.PickList $listCount={participants.length} $emptyList={emptyList}>
               {emptyList &&

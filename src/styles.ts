@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Unicorn, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0;
     margin: 0;
-    background-color: #fbf5e3;
+    background-color: ${({theme}) => theme.backgroundColor};
   }
   h1{
     font-size: 25px;
