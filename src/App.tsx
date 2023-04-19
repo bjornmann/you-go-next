@@ -44,7 +44,7 @@ const IndexPage = () => {
 
   const handleLoading = () => {
     console.log(isLoading);
-    // setIsLoading(false);
+    setIsLoading(false);
   }
   useEffect(() => {
     window.addEventListener("load", handleLoading);
