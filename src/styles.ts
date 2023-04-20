@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
   }
   body {
-    font-family: 'Unicorn', system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Unicorns", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0;
     margin: 0;
     background-color: ${({theme}) => theme.backgroundColor};
