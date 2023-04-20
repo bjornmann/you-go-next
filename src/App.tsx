@@ -43,13 +43,18 @@ const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoading = () => {
-    console.log(isLoading);
     setIsLoading(false);
   }
   useEffect(() => {
     window.addEventListener("load", handleLoading);
-    return () => window.removeEventListener("load", handleLoading);
-  }, [])
+    const fallbackTimeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => {
+      window.removeEventListener("load", handleLoading);
+      clearTimeout(fallbackTimeout);
+    }
+  }, []);
   useEffect(() => {
     //get query params to pull options and message
     const urlSearchParams = new URLSearchParams(window.location.search);

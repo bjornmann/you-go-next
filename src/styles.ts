@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle, keyframes, css } from 'styled-components'
 import { normalize } from 'styled-normalize'
+import 'unfonts.css'
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -7,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
   }
   body {
-    font-family: Unicorn, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Unicorn', system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0;
     margin: 0;
     background-color: ${({theme}) => theme.backgroundColor};

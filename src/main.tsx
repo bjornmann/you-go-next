@@ -5,7 +5,8 @@ import { GlobalStyle } from './styles';
 import styled, { ThemeProvider } from 'styled-components';
 import Footer from "./Footer";
 import ygnTheme from "./theme";
-import 'virtual:fonts.css';
+import 'unfonts.css';
+
 const SiteWrapper = styled.div`
   position: relative;
 `;
