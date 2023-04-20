@@ -183,7 +183,7 @@ export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean
   margin: auto;
   color: #2f2f2f;
   font-size: clamp(5px,4vw,30px);
-  font-family: Unicorn, serif;
+  font-family: 'Unicorns', serif;
   transition: all .2s;
   ${({$winnerIn, $winnerName, $isPicking}) => ($winnerName === 'none' && !$isPicking) ?
   (`opacity: 1;`) 
