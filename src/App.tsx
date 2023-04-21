@@ -240,11 +240,6 @@ const IndexPage = () => {
         {(!emptyList && !isLoading) &&
           <>
             <s.PickList $listCount={participants.length} $emptyList={emptyList}>
-              {emptyList &&
-                <s.ExampleMessage>
-                  Add names as comma separated values in the url. Here's an <a href="/?people=Click,Cards,To Flip Them">example</a>
-                </s.ExampleMessage>
-              }
               {participants.length >= 1 && participants[0].name !== "" && participants.map((participant, i) => {
                 return (<s.OptionItem key={participant.name}>
                   <s.CheckBox id={`${participant.name}-input`} type="checkbox" checked={participant.active} onChange={handleChange} name="participant_list" value={participant.name} />
