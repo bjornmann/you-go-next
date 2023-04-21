@@ -14,8 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["unplugin-fonts/client"]
   },
-  "include": ["src", "lint-staged-config.js"],
+  "include": ["src/**/*", "lint-staged-config.js", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

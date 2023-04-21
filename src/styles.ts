@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle, keyframes, css } from 'styled-components'
 import { normalize } from 'styled-normalize'
+import 'unfonts.css'
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -7,10 +8,10 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
   }
   body {
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Unicorns", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0;
     margin: 0;
-    background-color: #fbf5e3;
+    background-color: ${({theme}) => theme.backgroundColor};
   }
   h1{
     font-size: 25px;
@@ -83,7 +84,6 @@ export const PlaySoundWrapper = styled.div<{status:boolean|null}>`
     line-height: 30px;
     color: ${({status}) => status ? "#c2f0ad" : "#8a2426"};
     margin: ${({status}) => status ? "0 0px 0 5px" : "0 5px 0 0px"};
-;
   }
 `;
 export const Playsound = styled.button<{status:boolean|null}>`
@@ -113,31 +113,37 @@ export const CheckBox = styled.input`
   padding: 0; 
   border: 0; 
 `;
-export const PickList = styled.div<{$listCount:number}>`
+export const PickList = styled.div<{$listCount:number; $emptyList: boolean;}>`
   padding: 20px;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(${({$listCount})=> $listCount < 6 ? $listCount : 6}, 1fr);
+  ${({$listCount, $emptyList}) => $emptyList ? 
+    (`
+    grid-template-columns: repeat(1, 1fr);
+  `)
+  :
+  (`
+    grid-template-columns: repeat(${$listCount < 6 ? $listCount : 6}, 1fr);
+  `)}
   border-radius: 10px;
   gap: 25px;
-  margin-top: 20px;
   justify-content: space-around;
   flex-wrap: wrap;
   @media screen and (max-width: 600px) {
+    ${({$emptyList}) => $emptyList ? (`
+    grid-template-columns: repeat(1, 1fr);
+  `) :
+  (`
     grid-template-columns: repeat(3, 1fr);
+  `)}
   }
 `;
 export const Wrapper = styled.div`
   z-index: 20;
   position: relative;
   max-width: 1000px;
+  min-height: 100vh;
   margin: 0 auto;
-  min-height: 50vh;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
 `;
 
 export const OptionItem = styled.div`
@@ -164,7 +170,7 @@ export const AnimationWrapper = styled.div`
   position: relative;
   cursor: pointer;
 `;
-export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean}>`
+export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean; $winnerName: string;}>`
   position: absolute;
   top: calc(50% - 2px);
   left: 10px;
@@ -173,16 +179,18 @@ export const WinnerDisplay = styled.div<{$winnerIn: boolean; $isPicking: boolean
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 200px;
+  width: 160px;
   margin: auto;
   color: #2f2f2f;
-  font-size: clamp(15px,6vw,30px);
-  font-family: Pentagrams, serif;
+  font-size: clamp(5px,4vw,30px);
+  font-family: 'Unicorns', serif;
   transition: all .2s;
-  ${({$winnerIn}) => `
-    opacity: ${$winnerIn ? 1 : 0};
-  `}
-  ${({$isPicking}) => !$isPicking && css`
+  ${({$winnerIn, $winnerName, $isPicking}) => ($winnerName === 'none' && !$isPicking) ?
+  (`opacity: 1;`) 
+  :
+  (`opacity: ${$winnerIn ? 1 : 0};`)
+  }
+  ${({$isPicking, $winnerName}) => (!$isPicking && $winnerName !== 'none') && css`
       animation: 30s ${nameAnimation} ease-in-out infinite;
   `}
 `;

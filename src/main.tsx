@@ -2,18 +2,22 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { GlobalStyle } from './styles';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Footer from "./Footer";
-import 'virtual:fonts.css';
+import ygnTheme from "./theme";
+import 'unfonts.css';
+
 const SiteWrapper = styled.div`
   position: relative;
 `;
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <GlobalStyle />
-    <SiteWrapper>
+    <ThemeProvider theme={ygnTheme}>
+      <GlobalStyle />
+      <SiteWrapper>
         <App />
-        <Footer backgroundActive={true} />
-    </SiteWrapper>
+        <Footer />
+      </SiteWrapper>
+    </ThemeProvider>
   </React.StrictMode>
 )
