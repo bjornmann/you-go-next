@@ -5,6 +5,7 @@ import { GlobalStyle } from './styles';
 import styled, { ThemeProvider } from 'styled-components';
 import Footer from "./Footer";
 import ygnTheme from "./theme";
+import { Analytics } from '@vercel/analytics/react';
 import 'unfonts.css';
 
 const SiteWrapper = styled.div`
@@ -19,5 +20,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Footer />
       </SiteWrapper>
     </ThemeProvider>
+    <Analytics />
   </React.StrictMode>
 )
