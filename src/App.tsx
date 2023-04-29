@@ -40,6 +40,7 @@ const IndexPage = () => {
   const crystalBallAnimationRef = useRef<Player | null>(null);
   const [playSound, setPlaySound] = useLocalStorageBoolean("playSound", false);
   const [teamNotice, setTeamNotice] = useState(false);
+  const [hasPickedAtLeastOne, setHasPickedAtLeastOne] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoading = () => {
@@ -185,8 +186,9 @@ const IndexPage = () => {
         speechOutput = winningSpeechOptions[Math.floor(Math.random() * winningSpeechOptions.length)];
       }
     }
-    if (activeParticipants.length === participants.length - 1) {
+    if (!hasPickedAtLeastOne) {
       speechOutput = 'you go first!';
+      setHasPickedAtLeastOne(true);
     }
     if (playSound) {
       const utterance = new SpeechSynthesisUtterance(`${readOutName}, ${speechOutput}`);
