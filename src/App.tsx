@@ -176,14 +176,20 @@ const IndexPage = () => {
       'Last but probably not least!',
       'Chosen last? More like chosen best!',
       'You may have been chosen last, but you were still chosen! That\'s a win in my book.',
-      'Have you ever seen a cool movie with great lead character? That\'s you',
+      'That\'s you, you are the champion. The champion my friend.',
+      'Close your eyes and imagine winning. Now open your eyes. It happened.',
+      'You! You are the dreamer of dreams.',
     ]
     speechOutput = 'you go next!';
     if (activeParticipants.length === 0) {
       //none left, it's over
       setIsDone(true);
       if (playSound) {
-        speechOutput = winningSpeechOptions[Math.floor(Math.random() * winningSpeechOptions.length)];
+        if (readOutName.toLowerCase() === "ben") {
+          speechOutput = "Ben? Ben! Ben?? Ben!! Ben. Ben. ben."
+        } else {
+          speechOutput = winningSpeechOptions[Math.floor(Math.random() * winningSpeechOptions.length)];
+        }
       }
     }
     if (!hasPickedAtLeastOne) {
