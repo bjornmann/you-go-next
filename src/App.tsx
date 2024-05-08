@@ -160,25 +160,28 @@ const IndexPage = () => {
     setShowWinner(true);
     let speechOutput;
     const winningSpeechOptions = [
-      'winner winner chicken dinner.',
-      'you were picked last. yay.',
+      `winner winner ${readOutName}-en dinner.`,
+      `${readOutName} was picked last. yay.`,
       'insert trumpet sound here.',
-      'woo hoo. you win?',
-      'cue the confetti.',
-      'knock knock, who is there? You. you win.',
-      'time to make the donuts.',
-      'you just earned a black belt in going last. Chop!',
-      'you are the hero of this story!',
-      'there is no try, there is only you',
-      'time to finish strong. POWER!',
+      `woo hoo. ${readOutName} wins?`,
+      `cue the ${readOutName}-fetti.`,
+      `knock knock, who is there? ${readOutName}. you win.`,
+      `Wake up ${readOutName} - it's time to make the donuts.`,
+      `${readOutName} just earned a black belt in going last. Chop!`,
+      `${readOutName} is the hero of this story!`,
+      `there is no try, there is only ${readOutName}`,
+      `time to finish strong. ${readOutName} POWER!`,
       'it is time to party, party for you.',
-      'I had a dream about this, you were there. you won!',
+      `I had a dream about this, ${readOutName}, you were there. you won!`,
       'Last but probably not least!',
       'Chosen last? More like chosen best!',
-      'You may have been chosen last, but you were still chosen! That\'s a win in my book.',
-      'That\'s you, you are the champion. The champion my friend.',
-      'Close your eyes and imagine winning. Now open your eyes. It happened.',
-      'You! You are the dreamer of dreams.',
+      `${readOutName} - You may have been chosen last, but you were still chosen! That's a win in my book.`,
+      `${readOutName} - That's you, you are the champion. The champion my friend.`,
+      `Close your eyes and imagine winning. ${readOutName}, open your eyes. It happened.`,
+      `${readOutName}, You! You are the dreamer of dreams.`,
+      `! ${readOutName}! ${readOutName}! ${readOutName}?? ${readOutName}!`,
+      `${readOutName}, you are the chosen one. The one who was chosen last.`,
+      `${readOutName} is the last one standing. ${readOutName} was last one picked. ${readOutName} IS THE WINNER!'`
     ]
     speechOutput = 'you go next!';
     if (activeParticipants.length === 0) {
