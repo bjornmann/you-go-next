@@ -42,6 +42,7 @@ const IndexPage = () => {
   const [teamNotice, setTeamNotice] = useState(false);
   const [hasPickedAtLeastOne, setHasPickedAtLeastOne] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [followUpList, setFollowUpList] = useState<string[]>([]);
 
   const handleLoading = () => {
     setIsLoading(false);
@@ -222,6 +223,30 @@ const IndexPage = () => {
       }
     }
   };
+
+  const handleFollowUp = () => {
+    if (winner && winner.name && winner.name !== 'none') {
+      // Add to follow-up list only if not already present
+      setFollowUpList(prevList => {
+        if (!prevList.includes(winner.name)) {
+          return [...prevList, winner.name];
+        }
+        return prevList;
+      });
+      console.log(`Added ${winner.name} to follow-up list`);
+    }
+  };
+
+  const generateRestartUrl = () => {
+    const baseUrl = window.location.origin + window.location.pathname;
+    const params = new URLSearchParams();
+    params.set('people', followUpList.join(','));
+    if (message) {
+      params.set('message', message);
+    }
+    return `${baseUrl}?${params.toString()}`;
+  };
+
   const size = useWindowSize();
   return (
     <>
@@ -276,6 +301,26 @@ const IndexPage = () => {
                 }}
               />
             </s.AnimationWrapper>
+            {showWinner && winner?.name && winner.name !== 'none' && !followUpList.includes(winner.name) && (
+              <s.FollowUpButton onClick={handleFollowUp}>
+                Follow up with {winner.name}
+              </s.FollowUpButton>
+            )}
+            {followUpList.length > 0 && (
+              <s.FollowUpList>
+                <s.FollowUpListTitle>Follow-up List:</s.FollowUpListTitle>
+                {followUpList.map((name, index) => (
+                  <s.FollowUpListItem key={name}>
+                    {index + 1}. {name}
+                  </s.FollowUpListItem>
+                ))}
+              </s.FollowUpList>
+            )}
+            {showWinner && winner?.name && winner.name !== 'none' && followUpList.length > 0 && (
+              <s.RestartLink href={generateRestartUrl()}>
+                Start new round with follow-up list
+              </s.RestartLink>
+            )}
             {message !== '' && <s.Message>
               {message.replaceAll('|', '\n')}
             </s.Message>}
