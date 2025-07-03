@@ -301,6 +301,9 @@ const IndexPage = () => {
                 }}
               />
             </s.AnimationWrapper>
+            {message !== '' && <s.Message>
+              {message.replaceAll('|', '\n')}
+            </s.Message>}
             {showWinner && winner?.name && winner.name !== 'none' && !followUpList.includes(winner.name) && (
               <s.FollowUpButton onClick={handleFollowUp}>
                 Follow up with {winner.name}
@@ -316,14 +319,11 @@ const IndexPage = () => {
                 ))}
               </s.FollowUpList>
             )}
-            {showWinner && winner?.name && winner.name !== 'none' && followUpList.length > 0 && (
+            {isDone && followUpList.length > 0 && (
               <s.RestartLink href={generateRestartUrl()}>
                 Start new round with follow-up list
               </s.RestartLink>
             )}
-            {message !== '' && <s.Message>
-              {message.replaceAll('|', '\n')}
-            </s.Message>}
             <s.OptionsBar>
               <s.PlaySoundWrapper onClick={() => setPlaySound(!playSound)} status={playSound}>
                 <s.Playsound status={playSound}>
