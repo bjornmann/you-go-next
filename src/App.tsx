@@ -145,7 +145,8 @@ const IndexPage = () => {
     const winnerIndex = activeParticipants.findIndex((el) => {
       return el?.name === activeParticipants[winningNumber]?.name;
     });
-    const readOutName = activeParticipants[winningNumber]?.name;
+    const readOutName = activeParticipants[winningNumber]?.name || '';
+    const ttsReadOutName = readOutName.trim().toLowerCase() === 'grete' ? 'Greta' : readOutName;
     //put it in state
     setWinner({ index: winnerIndex, ...activeParticipants[winnerIndex] });
     //get the winner out of the list of options to pick from
@@ -201,7 +202,8 @@ const IndexPage = () => {
       setHasPickedAtLeastOne(true);
     }
     if (playSound) {
-      const utterance = new SpeechSynthesisUtterance(`${readOutName}, ${speechOutput}`);
+      const ttsSpeechOutput = speechOutput.replaceAll(readOutName, ttsReadOutName);
+      const utterance = new SpeechSynthesisUtterance(`${ttsReadOutName}, ${ttsSpeechOutput}`);
       utterance.pitch = 0.7;
       speechSynthesis.speak(utterance);
     }
@@ -210,7 +212,7 @@ const IndexPage = () => {
     if (!isPicking) {
       // find the clicked input. if it is now checked set it to true in participants
       const currCheck = e.target as HTMLInputElement;
-      const updatedParticipants = participants.map((participant, index) => {
+      const updatedParticipants = participants.map((participant) => {
         if (participant.name === currCheck.value) {
           //This is the one
           participant.active = currCheck.checked;
