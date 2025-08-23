@@ -198,6 +198,78 @@ export const ExampleMessage = styled.div`
   font-size:20px;
 `;
 
+export const NameInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const NameInput = styled.input`
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #481dcd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  min-width: 0;
+  
+  &:focus {
+    border-color: #7a5af5;
+    box-shadow: 0 0 0 3px rgba(114, 76, 255, 0.2);
+  }
+`;
+
+export const PronunciationButton = styled.button<{ $isActive?: boolean }>`
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 2px solid #481dcd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 0;
+  flex-shrink: 0;
+  
+  &:hover {
+    background-color: #e0e0e0;
+  }
+  
+  ${({ $isActive }) => $isActive && `
+    background-color: #7a5af5;
+    color: white;
+    border-color: #7a5af5;
+  `}
+`;
+
+export const PronunciationInput = styled.input`
+  width: 0;
+  padding: 0;
+  border: 2px solid #7a5af5;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease;
+  opacity: 0;
+  background: white;
+  height: 40px;
+  font-size: 14px;
+  
+  &.visible {
+    width: 200px;
+    opacity: 1;
+    padding: 0 10px;
+  }
+`;
+
 export const FollowUpButton = styled.button`
   background-color: #481dcd;
   color: white;
