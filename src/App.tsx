@@ -171,54 +171,56 @@ const IndexPage = () => {
   //option chosen!
   const handleAnimationComplete = () => {
     setIsPicking(false);
-    
+
     // Get the current active participants
     const currentActiveParticipants = getActiveParticipants(participants);
-    
+
     // If no active participants, do nothing
     if (currentActiveParticipants.length === 0) {
       setIsDone(true);
       return;
     }
-    
+
     // Select a random winner from active participants
-    const winningNumber = Math.floor(Math.random() * currentActiveParticipants.length);
+    const winningNumber = Math.floor(
+      Math.random() * currentActiveParticipants.length
+    );
     const winner = currentActiveParticipants[winningNumber];
-    
+
     if (!winner) {
-      console.error('No winner selected');
+      console.error("No winner selected");
       return;
     }
-    
+
     // Find the winner's index in the main participants array
-    const winnerIndex = participants.findIndex(p => p.name === winner.name);
-    
+    const winnerIndex = participants.findIndex((p) => p.name === winner.name);
+
     // Update the winner in state
     setWinner({ ...winner, index: winnerIndex });
-    
+
     // Update participants to mark the winner as inactive
-    const updatedParticipants = participants.map(participant => 
-      participant.name === winner.name 
-        ? { ...participant, active: false } 
+    const updatedParticipants = participants.map((participant) =>
+      participant.name === winner.name
+        ? { ...participant, active: false }
         : participant
     );
-    
+
     setParticipants(updatedParticipants);
-    
+
     // Update active participants list
-    const newActiveParticipants = updatedParticipants.filter(p => p.active);
+    const newActiveParticipants = updatedParticipants.filter((p) => p.active);
     setActiveParticipants(newActiveParticipants);
-    
+
     // Update isDone state if no more active participants
     setIsDone(newActiveParticipants.length === 0);
-    
+
     // Show the winner and set up speech
     setShowWinner(true);
-    
+
     // Get the name to speak (use pronunciation if available)
     const ttsReadOutName = winner.pronunciation || winner.name;
     let speechOutput = "";
-    
+
     // Set up the appropriate speech output
     if (!hasPickedAtLeastOne) {
       // First winner
@@ -226,43 +228,51 @@ const IndexPage = () => {
       speechOutput = `${ttsReadOutName} goes first!`;
     } else if (newActiveParticipants.length === 0) {
       // Last participant
-      if (winner.name.toLowerCase() === "ben") {
-        speechOutput = "Ben? Ben! Ben?? Ben!! Ben. Ben. ben.";
-      } else {
-        const winningSpeechOptions = [
-          `winner winner ${ttsReadOutName}-en dinner.`,
-          `${ttsReadOutName} was picked last. yay.`,
-          "insert trumpet sound here.",
-          `woo hoo. ${ttsReadOutName} wins?`,
-          `cue the ${ttsReadOutName}-fetti.`,
-          `knock knock, who is there? ${ttsReadOutName}. you win.`,
-          `Wake up ${ttsReadOutName} - it's time to make the donuts.`,
-          `${ttsReadOutName} just earned a black belt in going last. Chop!`,
-          `${ttsReadOutName} is the hero of this story!`,
-          `there is no try, there is only ${ttsReadOutName}`,
-          `time to finish strong. ${ttsReadOutName} POWER!`,
-          "it is time to party, party for you.",
-          `I had a dream about this, ${ttsReadOutName}, you were there. you won!`,
-          "Last but probably not least!",
-          "Chosen last? More like chosen best!",
-          `${ttsReadOutName} - You may have been chosen last, but you were still chosen! That's a win in my book.`,
-          `${ttsReadOutName} - That's you, you are the champion. The champion my friend.`,
-          `Close your eyes and imagine winning. ${ttsReadOutName}, open your eyes. It happened.`,
-          `${ttsReadOutName}, You! You are the dreamer of dreams.`,
-          `${ttsReadOutName}! ${ttsReadOutName}! ${ttsReadOutName}?? ${ttsReadOutName}!`,
-          `${ttsReadOutName}, you are the chosen one. The one who was chosen last.`,
-          `${ttsReadOutName} is the last one standing. ${ttsReadOutName} was last one picked. ${ttsReadOutName} IS THE WINNER!'`,
-        ];
-        speechOutput = winningSpeechOptions[
+      const winningSpeechOptions = [
+        `winner winner ${ttsReadOutName}-en dinner.`,
+        `${ttsReadOutName} was picked last. yay.`,
+        "insert trumpet sound here.",
+        `woo hoo. ${ttsReadOutName} wins?`,
+        `cue the ${ttsReadOutName}-fetti.`,
+        `knock knock, who is there? ${ttsReadOutName}. you win.`,
+        `Wake up ${ttsReadOutName} - it's time to make the donuts.`,
+        `${ttsReadOutName} just earned a black belt in going last. Chop!`,
+        `${ttsReadOutName} is the hero of this story!`,
+        `there is no try, there is only ${ttsReadOutName}`,
+        `time to finish strong. ${ttsReadOutName} POWER!`,
+        "it is time to party, party for you.",
+        `I had a dream about this, ${ttsReadOutName}, you were there. you won!`,
+        "Last but probably not least!",
+        "Chosen last? More like chosen best!",
+        `${ttsReadOutName} - You may have been chosen last, but you were still chosen! That's a win in my book.`,
+        `${ttsReadOutName} - That's you, you are the champion. The champion my friend.`,
+        `Close your eyes and imagine winning. ${ttsReadOutName}, open your eyes. It happened.`,
+        `${ttsReadOutName}, You! You are the dreamer of dreams.`,
+        `${ttsReadOutName}! ${ttsReadOutName}! ${ttsReadOutName}?? ${ttsReadOutName}!`,
+        `${ttsReadOutName}, you are the chosen one. The one who was chosen last.`,
+        `${ttsReadOutName} is the last one standing. ${ttsReadOutName} was last one picked. ${ttsReadOutName} IS THE WINNER!'`,
+        `${ttsReadOutName} just won the internet! Or at least this round.`,
+        `Drumroll please... ${ttsReadOutName} takes the cake!`,
+        `${ttsReadOutName} - you're like an old grape juice, best saved for last!`,
+        `And the crowd goes wild! ${ttsReadOutName} for the win!`,
+        `${ttsReadOutName} - you're not last, you're fashionably late to the winner's circle!`,
+        `Ta-da! ${ttsReadOutName} just won the game of patience!`,
+        `${ttsReadOutName} - proving that good things come to those who wait!`,
+        `Is it a bird? Is it a plane? No, it's ${ttsReadOutName}, the last pick champion!`,
+        `${ttsReadOutName} - you're the cherry on top of this sundae of success! YUM!`,
+        `And the award for 'Most Patient Participant' goes to... ${ttsReadOutName}!`,
+      ];
+      speechOutput =
+        winningSpeechOptions[
           Math.floor(Math.random() * winningSpeechOptions.length)
         ];
-      }
+
       setIsDone(true);
     } else {
       // Regular winner announcement
       speechOutput = `${ttsReadOutName} goes next!`;
     }
-    
+
     // Speak the announcement if sound is enabled
     if (playSound) {
       const utterance = new SpeechSynthesisUtterance(
@@ -293,21 +303,24 @@ const IndexPage = () => {
     if (winner?.name && winner.name !== "none") {
       setFollowUpList((prevList) => {
         // Check if winner is already in the list
-        const exists = prevList.some(item => item.name === winner.name);
-        
+        const exists = prevList.some((item) => item.name === winner.name);
+
         if (!exists) {
           // Add the full winner object to preserve pronunciation
-          return [...prevList, { 
-            name: winner.name, 
-            active: true,
-            pronunciation: winner.pronunciation 
-          }];
+          return [
+            ...prevList,
+            {
+              name: winner.name,
+              active: true,
+              pronunciation: winner.pronunciation,
+            },
+          ];
         }
         return prevList;
       });
-      
+
       console.log(`Added ${winner.name} to follow-up list`);
-      
+
       // Don't reset the winner state here - let the user see who was added
       // The winner will be reset when a new winner is picked
     }
@@ -316,10 +329,8 @@ const IndexPage = () => {
   const generateRestartUrl = () => {
     const baseUrl = window.location.origin + window.location.pathname;
     const params = new URLSearchParams();
-    const participantStrings = followUpList.map(item => 
-      item.pronunciation 
-        ? `${item.name}:${item.pronunciation}` 
-        : item.name
+    const participantStrings = followUpList.map((item) =>
+      item.pronunciation ? `${item.name}:${item.pronunciation}` : item.name
     );
     params.set("participants", participantStrings.join(","));
     if (message) {
@@ -407,7 +418,8 @@ const IndexPage = () => {
             {showWinner &&
               winner?.name &&
               winner.name !== "none" &&
-              (!followUpList || !followUpList.some(item => item.name === winner.name)) && (
+              (!followUpList ||
+                !followUpList.some((item) => item.name === winner.name)) && (
                 <s.FollowUpButton onClick={handleFollowUp}>
                   Follow up with {winner.name}
                 </s.FollowUpButton>
